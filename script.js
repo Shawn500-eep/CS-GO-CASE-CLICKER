@@ -5,6 +5,7 @@ let skins = ["AK-47 | Redline", "M4A4 | Asiimov", "AWP | Dragon Lore", "USP-S | 
 let inventory = [];
 
 document.getElementById("click-button").addEventListener("click", openCase);
+document.getElementById("sell-button").addEventListener("click", sellSkin);
 
 function openCase() {
     // Earn coins and open a case
@@ -17,6 +18,21 @@ function openCase() {
 
     // Update inventory UI
     updateInventory();
+}
+
+function sellSkin() {
+    if (inventory.length > 0) {
+        // Sell the first skin in the inventory
+        let soldSkin = inventory.shift(); // Remove the first item in the array
+        coins += 10; // Add some coin value when selling a skin (you can change this)
+        document.getElementById("coins").textContent = coins;
+        alert("You sold: " + soldSkin);
+
+        // Update inventory UI
+        updateInventory();
+    } else {
+        alert("Your inventory is empty!");
+    }
 }
 
 function updateInventory() {
